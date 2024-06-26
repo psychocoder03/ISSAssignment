@@ -1,0 +1,6 @@
+package com.gautam.OOPSConcepts;
+
+public interface ITax {
+
+	int CalculateTax()
+}

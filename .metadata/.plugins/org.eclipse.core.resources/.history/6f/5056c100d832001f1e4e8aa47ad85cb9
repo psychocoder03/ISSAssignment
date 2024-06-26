@@ -1,0 +1,69 @@
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.ParseException;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+public class JSONHandler {
+	// Method to create a JSON file
+	public static void createJsonFile(String filePath, Person person) {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("name", person.getName());
+		jsonObject.put("age", person.getAge());
+		jsonObject.put("email", person.getEmail());
+		jsonObject.put("street", person.getStreet());
+		jsonObject.put("city", person.getCity());
+		jsonObject.put("zip", person.getZip());
+
+		try (FileWriter file = new FileWriter(filePath)) {
+			file.write(jsonObject.toJSONString());
+			System.out.println("Successfully created JSON file: " + filePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Method to read a JSON file
+	public static Person readJsonFile(String filePath) {
+		JSONParser parser = new JSONParser();
+		Person person = new Person();
+
+		try (FileReader reader = new FileReader(filePath)) {
+			JSONObject jsonObject = (JSONObject) parser.parse(reader);
+			person.setName((String) jsonObject.get("name"));
+			person.setAge(((Long) jsonObject.get("age")).intValue());
+			person.setEmail((String) jsonObject.get("email"));
+			person.setStreet((String) jsonObject.get("street"));
+			person.setCity((String) jsonObject.get("city"));
+			person.setZip((String) jsonObject.get("zip"));
+		} catch (IOException | ParseException e) {
+			e.printStackTrace();
+		}
+
+		return person;
+	}
+
+	// Method to modify a JSON file
+	public static void modifyJsonFile(String filePath, String key, Object newValue) {
+		JSONParser parser = new JSONParser();
+		JSONObject jsonObject;
+
+		try (FileReader reader = new FileReader(filePath)) {
+			jsonObject = (JSONObject) parser.parse(reader);
+		} catch (IOException | ParseException e) {
+			e.printStackTrace();
+			return;
+		}
+
+		jsonObject.put(key, newValue);
+
+		try (FileWriter file = new FileWriter(filePath)) {
+			file.write(jsonObject.toJSONString());
+			System.out.println("Successfully modified JSON file: " + filePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

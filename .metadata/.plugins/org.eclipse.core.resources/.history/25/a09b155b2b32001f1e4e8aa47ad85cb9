@@ -1,0 +1,38 @@
+package com.gautam.Collections;
+
+class Student implements Comparable<Student> {
+	private int id;
+	private String name;
+
+	public Student(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public int compareTo(Student other) {
+		return Integer.compare(this.id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Student " + id + name + "}";
+		
+		 List<Student> studentList = new ArrayList<>();
+	        studentList.add(new Student(3, "Alice"));
+	        studentList.add(new Student(1, "Bob"));
+	        studentList.add(new Student(2, "Charlie"));
+
+	        System.out.println("Original Student List: " + studentList);
+	        Collections.sort(studentList, new StudentNameComparator());
+	        System.out.println("Sorted Student List by Name: " + studentList);
+	}
+}

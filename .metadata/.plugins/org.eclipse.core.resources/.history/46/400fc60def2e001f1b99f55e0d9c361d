@@ -1,0 +1,8 @@
+package com.gautam.OOPSConcepts;
+
+public interface ITax {
+
+	float CalculateTax(Parent parent);
+
+	float CalculateTax(Child child);
+}

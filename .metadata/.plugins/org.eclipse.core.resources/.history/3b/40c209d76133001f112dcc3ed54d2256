@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <script>
+        function validateForm() {
+            var username = document.forms["registerForm"]["username"].value;
+            var password = document.forms["registerForm"]["password"].value;
+            if (username == "" || password == "") {
+                alert("Username and Password must be filled out");
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Register</h2>
+    <form name="registerForm" action="register" method="post" onsubmit="return validateForm()">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>

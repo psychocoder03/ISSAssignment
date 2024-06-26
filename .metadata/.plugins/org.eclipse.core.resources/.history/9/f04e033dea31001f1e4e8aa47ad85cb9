@@ -1,0 +1,9 @@
+package com.gautam;
+
+public class CustomException extends Exception {
+
+	public CustomException() 
+
+	}
+
+}

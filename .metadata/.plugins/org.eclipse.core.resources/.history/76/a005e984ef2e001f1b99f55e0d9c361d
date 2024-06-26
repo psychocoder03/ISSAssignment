@@ -1,0 +1,15 @@
+package com.gautam.OOPSConcepts;
+
+//Interface
+public class Tax implements ITax {
+
+//	 Polymorphism
+	public double CalculateTax(Parent parent) {
+		return (parent.income * (100 - parent.age)) / 100;
+	}
+
+	public double CalculateTax(Child child) {
+		return (child.income * 0.95);
+	}
+
+}

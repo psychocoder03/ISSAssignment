@@ -1,0 +1,29 @@
+package com.gautam;
+
+import java.io.IOException;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class RegisterServlet
+ */
+
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+
+		// Here you can add code to store the user in a database
+		// For simplicity, we just forward to the login page
+
+		response.sendRedirect("login.jsp");
+	}
+}

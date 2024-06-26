@@ -1,0 +1,14 @@
+package com.gautam.OOPSConcepts;
+
+public class Tax implements ITax {
+
+	public float CalculateTax(Parent parent) {
+		return parent.income - (parent.income * parent.age) / 100;
+	}
+
+	public float CalculateTax(Child child) {
+		// TODO Auto-generated method stub
+		return (child.income * 0.95);
+	}
+
+}

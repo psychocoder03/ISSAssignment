@@ -1,0 +1,17 @@
+package com.gautam.OOPSConcepts;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Person person = new Person("Ram", 7);
+		System.out.println(person.type);
+		Person parent = new Parent("Shyam", 47);
+		System.out.println(parent.type);
+
+		// Inheritance
+		System.out.println(parent.describeMe());
+		
+		
+	}
+
+}

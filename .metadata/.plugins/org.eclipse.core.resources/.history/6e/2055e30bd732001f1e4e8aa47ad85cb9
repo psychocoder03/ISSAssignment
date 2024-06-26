@@ -1,0 +1,98 @@
+package com.gautam.JSONFile;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class JSONHandler {
+	public static void createJsonFile(String filePath, Person person) {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("name", person.getName());
+		jsonObject.put("age", person.getAge());
+		jsonObject.put("email", person.getEmail());
+
+		try (FileWriter file = new FileWriter(filePath)) {
+			file.write(jsonObject.toString());
+			System.out.println("Successfully created JSON file: " + filePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Method to read a JSON file
+	public static Person readJsonFile(String filePath) {
+		StringBuilder jsonString = new StringBuilder();
+
+		try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				jsonString.append(line);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		JSONObject jsonObject = new JSONObject(jsonString.toString());
+		Person person = new Person();
+		person.setName(jsonObject.getString("name"));
+		person.setAge(jsonObject.getInt("age"));
+		person.setEmail(jsonObject.getString("email"));
+
+		return person;
+	}
+
+	// Method to modify a JSON file
+	public static void modifyJsonFile(String filePath, String key, Object newValue) {
+		StringBuilder jsonString = new StringBuilder();
+
+		try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				jsonString.append(line);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		JSONObject jsonObject = new JSONObject(jsonString.toString());
+		jsonObject.put(key, newValue);
+
+		try (FileWriter file = new FileWriter(filePath)) {
+			file.write(jsonObject.toString());
+			System.out.println("Successfully modified JSON file: " + filePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		String filePath = "person.json";
+
+		Person person = new Person();
+		person.setName("John Doe");
+		person.setAge(30);
+		person.setEmail("johndoe@example.com");
+		person.setStreet("123 Main St");
+		person.setCity("Anytown");
+		person.setZip("12345");
+
+		JsonHandler.createJsonFile(filePath, person);
+
+		Person readPerson = JsonHandler.readJsonFile(filePath);
+		System.out.println("Read from JSON file:");
+		System.out.println("Name: " + readPerson.getName());
+		System.out.println("Age: " + readPerson.getAge());
+		System.out.println("Email: " + readPerson.getEmail());
+		System.out.println("City: " + readPerson.getCity());
+
+		JsonHandler.modifyJsonFile(filePath, "age", 35);
+		System.out.println("Modified age in JSON file to 35.");
+
+		// Read the modified JSON file
+		Person modifiedPerson = JsonHandler.readJsonFile(filePath);
+		System.out.println("Read modified JSON file:");
+		System.out.println("Name: " + modifiedPerson.getName());
+		System.out.println("Age: " + modifiedPerson.getAge());
+	}
+}

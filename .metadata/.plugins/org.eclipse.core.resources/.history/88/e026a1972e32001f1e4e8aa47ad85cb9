@@ -1,0 +1,23 @@
+package com.gautam.Threading;
+
+public class SharedResource {
+	private volatile int counter = 0;
+	private final Object lock = new Object();
+
+	// Synchronized method to ensure thread safety
+	public synchronized void increment() {
+		counter++;
+	}
+
+	// Synchronized block to ensure thread safety
+	public void incrementWithBlock() {
+		synchronized (lock) {
+			counter++;
+		}
+	}
+
+	// Method to get the current value of the counter
+	public int getValue() {
+		return counter;
+	}
+}

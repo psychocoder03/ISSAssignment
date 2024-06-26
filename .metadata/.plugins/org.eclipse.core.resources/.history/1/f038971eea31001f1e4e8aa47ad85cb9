@@ -1,0 +1,12 @@
+package com.gautam;
+
+public class CustomException extends Exception {
+
+	public CustomException(double amount) {
+		this.amount = amount;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+}

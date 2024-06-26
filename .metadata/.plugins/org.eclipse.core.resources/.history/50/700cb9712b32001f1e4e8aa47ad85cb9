@@ -1,0 +1,43 @@
+package com.gautam.Collections;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class Collections {
+	public static void main(String[] args) {
+		// List of Integers
+		List<Integer> integerList = new ArrayList<>(Arrays.asList(5, 3, 1, 4, 2));
+		System.out.println("Original Integer List: " + integerList);
+		Collections.sort(integerList);
+		System.out.println("Sorted Integer List: " + integerList);
+
+		// Set of Integers
+		Set<Integer> integerSet = new HashSet<>(integerList);
+		System.out.println("Integer Set: " + integerSet);
+
+		// List of Students
+		List<Student> studentList = new ArrayList<>();
+		studentList.add(new Student(3, "Alice"));
+		studentList.add(new Student(1, "Bob"));
+		studentList.add(new Student(2, "Charlie"));
+		System.out.println("Original Student List: " + studentList);
+		Collections.sort(studentList);
+		System.out.println("Sorted Student List by ID: " + studentList);
+
+		// Set of Students
+		Set<Student> studentSet = new HashSet<>(studentList);
+		System.out.println("Student Set: " + studentSet);
+
+		// Map of Students
+		Map<Integer, Student> studentMap = new HashMap<>();
+		for (Student student : studentList) {
+			studentMap.put(student.getId(), student);
+		}
+		System.out.println("Student Map: " + studentMap);
+	}
+}

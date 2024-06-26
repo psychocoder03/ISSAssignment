@@ -1,0 +1,10 @@
+//package com.gautam;
+//
+//public class VariableTypes {
+//
+//	public static void main(String[] args) {
+//		public String publicVar = "2";
+//		private String privateVar = "2";
+//
+//	}
+//}
